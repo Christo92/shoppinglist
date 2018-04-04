@@ -9,8 +9,10 @@ class Form extends Component {
 
     handlesubmit = (event) => {
         event.preventDefault();
-        console.log('inside handle')
         this.props.addArticle(this.state);
+
+        // Vide le formulaire après la validation, on réinitialise le formulaire
+        this.setState({ name: '', quantity: 0 })
     };
 
     render () {
@@ -20,6 +22,7 @@ class Form extends Component {
                 <form onSubmit={ this.handlesubmit }>
                     <input 
                         type="number" 
+                        className="quantity"
                         placeholder="quantité" 
                         value={ this.state.quantity } 
                         onChange={(event) => this.setState({ quantity: event.target.value })}
@@ -30,7 +33,7 @@ class Form extends Component {
                         value={ this.state.name }
                         onChange={(event) => this.setState({ name: event.target.value })}
                     />
-                    <button type="submit">Ajouter</button>
+                    <button type="submit" className="btn btn-success">Ajouter</button>
                 </form>
             </div>
         );
